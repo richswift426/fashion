@@ -23,6 +23,7 @@ export default function Home() {
         </a>
       </header>
       <main className="main">
+        <h1>Fashion App</h1>
         <div className="content container">
           <div className="space-y-4"></div>
 
