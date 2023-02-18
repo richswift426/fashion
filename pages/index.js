@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import { GithubIcon } from "components/icons/GithubIcon";
 import ImageUploading from "react-images-uploading";
+import { generateZip } from "utils/zip";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -120,14 +121,8 @@ export default function Home() {
                 )}
               </ImageUploading>
             </div>
+            <div onClick={() => generateZip(products)}>download zips</div>
           </div>
-
-          {/** Show the images a user has created */}
-          {/* <div className="pt-1 space-y-4">
-            {user?.textToImage?.map((image, i) => (
-              <img src={image} key={i} className="w-full" />
-            ))}
-          </div> */}
         </div>
       </main>
     </>
