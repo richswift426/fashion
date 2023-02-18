@@ -271,3 +271,54 @@ button:hover {
     width: 60%;
   }
 }
+
+.file-upload {
+  color: transparent;
+}
+
+.file-upload::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.file-upload::before {
+  content: "Select some files";
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  /* white-space: nowrap; */
+  cursor: pointer;
+  color: black;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.file-upload:hover::before {
+  border-color: black;
+}
+
+.file-upload:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.uploaded-products {
+  margin: 20px 0;
+}
+
+.uploaded-products > div {
+  display: inline-block;
+  height: 150px;
+  width: 160px;
+  margin-right: 20px;
+}
+
+.users-slot-title,
+.products-slot-title {
+  margin-bottom: 12px;
+  font-size: 30px;
+  font-weight: 700;
+  color: rgb(114, 114, 114);
+}
