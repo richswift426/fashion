@@ -179,6 +179,7 @@ button {
   cursor: pointer;
   border: 1px solid currentColor;
   background-color: #fff;
+  margin-right: 8px;
 }
 
 button:hover {

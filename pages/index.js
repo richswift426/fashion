@@ -72,6 +72,12 @@ export default function Home() {
                     >
                       Click or Drop here
                     </button>
+                    {products.length !== 0 && (
+                      <button onClick={() => generateZip(products)}>
+                        Upload products
+                      </button>
+                    )}
+
                     <div className="uploaded-products">
                       {products.map((image, index) => (
                         <div key={index} className="image-item">
@@ -110,6 +116,11 @@ export default function Home() {
                     >
                       Click or Drop here
                     </button>
+                    {userImages.length !== 0 && (
+                      <button onClick={() => generateZip(userImages)}>
+                        Upload user images
+                      </button>
+                    )}
                     <div className="uploaded-products">
                       {userImages.map((image, index) => (
                         <div key={index} className="image-item">
@@ -121,7 +132,6 @@ export default function Home() {
                 )}
               </ImageUploading>
             </div>
-            <div onClick={() => generateZip(products)}>download zips</div>
           </div>
         </div>
       </main>
