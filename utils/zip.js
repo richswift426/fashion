@@ -1,22 +1,29 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import * as filestack from "filestack-js";
+import { Upload } from "upload-js";
 
+const upload = Upload({ apiKey: "free" });
 var zip = JSZip();
-const key = "ABNIpc8C9R7iWvjLqRubJz";
-const client = filestack.init(key);
+
+const onProgress = ({ progress }) => {
+  console.log(`File uploading: ${progress}% complete.`);
+};
 
 export const generateZip = async (arr) => {
   if (arr.length) {
     for (const element of arr) {
-      zip.file(`images/image_${element.file.size}.png`, element.file, {
+      zip.file(`image_${element.file.size}.png`, element.file, {
         binary: true,
       });
     }
 
     const blob = await zip.generateAsync({ type: "blob" });
-    // const { url } = await client.upload(blob);
-    console.log(client);
-    // return url;
+    return blob;
+    // try {
+    //   const { fileUrl } = await upload.uploadFile(blob, { onProgress });
+    //   console.log(`File uploaded: ${fileUrl}`);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 };
