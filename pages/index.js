@@ -25,6 +25,10 @@ export default function Home() {
     console.log(products);
   }, [products]);
 
+  const uploadProducts = async () => {
+    await generateZip(products);
+  };
+
   return (
     <>
       <Head>
@@ -73,7 +77,7 @@ export default function Home() {
                       Click or Drop here
                     </button>
                     {products.length !== 0 && (
-                      <button onClick={() => generateZip(products)}>
+                      <button onClick={() => uploadProducts(products)}>
                         Upload products
                       </button>
                     )}
