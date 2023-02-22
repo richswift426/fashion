@@ -4,9 +4,12 @@ import { GithubIcon } from "components/icons/GithubIcon";
 import ImageUploading from "react-images-uploading";
 import { generateZip } from "utils/zip";
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [prediction, setPrediction] = useState(null);
+  const [error, setError] = useState(null);
+
   const [products, setProducts] = useState([]);
   const [userImages, setUserImages] = useState([]);
   const maxNumber = 69;
@@ -40,6 +43,25 @@ export default function Home() {
         },
       }),
     });
+    let multi = await response.json();
+    setPrediction(multi);
+    const predictionId = multi.uuid;
+    if (response.status !== 201) {
+      setError(multi.detail);
+      return;
+    }
+    while (multi.status !== "succeeded" && multi.status !== "failed") {
+      await sleep(1000);
+      const response = await fetch("/api/lora/" + predictionId);
+      const { prediction } = await response.json();
+      multi = prediction;
+      if (response.status !== 200) {
+        setError(multi.detail);
+        return;
+      }
+      setPrediction(prediction);
+    }
+    console.log(multi);
   };
 
   return (
