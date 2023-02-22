@@ -25,17 +25,17 @@ export default function Home() {
   }, [products]);
 
   const uploadProducts = async () => {
-    const zip = await generateZip(products);
-    console.log(zip);
-    await fetch("/api/lora", {
+    const zipUrl = await generateZip(products);
+
+    const response = await fetch("/api/lora", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         inputs: {
-          instance_data:
-            "https://replicate.delivery/pbxt/IFYJBZ8XoHFfXPkkk3ToCv2n2ccyJHjSo5avPWsXJqbwHs7N/pokemon.zip",
+          instance_data: zipUrl,
+          resolution: 512,
           task: "object",
         },
       }),

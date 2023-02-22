@@ -1,8 +1,7 @@
 import JSZip from "jszip";
-import { saveAs } from "file-saver";
 import { Upload } from "upload-js";
 
-const upload = Upload({ apiKey: "free" });
+const upload = Upload({ apiKey: "public_W142heBDQe23q9gaoApzSNosGFs3" });
 var zip = JSZip();
 
 const onProgress = ({ progress }) => {
@@ -18,12 +17,11 @@ export const generateZip = async (arr) => {
     }
 
     const blob = await zip.generateAsync({ type: "blob" });
-    return blob;
-    // try {
-    //   const { fileUrl } = await upload.uploadFile(blob, { onProgress });
-    //   console.log(`File uploaded: ${fileUrl}`);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const { fileUrl } = await upload.uploadFile(blob, { onProgress });
+      return fileUrl;
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
