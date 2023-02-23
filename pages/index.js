@@ -12,6 +12,8 @@ export default function Home() {
 
   const [products, setProducts] = useState([]);
   const [userImages, setUserImages] = useState([]);
+  const [productUrl, setProductUrl] = useState('');
+  const [userImageUrl, setUserImageUrl] = useState('');
   const maxNumber = 69;
 
   const onProductsChange = (imageList, addUpdateIndex) => {
